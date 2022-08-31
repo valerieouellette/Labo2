@@ -54,10 +54,15 @@ class AppPizza:
                 print("Choix invalide")
 
     def creation_pizza(self):
-        pass
+        rayon = int(input("Entrez le rayon de la pizza: "))
+        diametre = rayon * 2
+        cout = int(input("Entrez le cout de la pizza: "))
+        self.liste_pizza.append(Pizza(rayon, diametre, cout))
 
     def creation_boite(self):
-        pass
+        longueur = int(input("Entrez la longueur de la boîte: "))
+        largeur = int(input("Entrez la largeur de la boîte: "))
+        self.liste_boite.append(Boite(longueur, largeur))
 
     def afficher_liste_pizza(self):
         pass
