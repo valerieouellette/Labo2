@@ -7,11 +7,18 @@ class Pizza:
         self.diametre = diametre
         self.cout = cout
 
+    def __str__(self):
+        return f"PIZZA rayon: {self.rayon}, diamètre: {self.diametre}, coût: {self.cout}"
+
+
 class Boite:
     
     def __init__(self, longueur, largeur):
         self.longueur = longueur
         self.largeur = largeur
+    
+    def __str__(self):
+        return f"BOÎTE longueur: {self.longueur}, largeur {self.largeur}"
 
 class AppPizza:
 
@@ -65,10 +72,12 @@ class AppPizza:
         self.liste_boite.append(Boite(longueur, largeur))
 
     def afficher_liste_pizza(self):
-        pass
+        for pizza in self.liste_pizza:
+            print(str(pizza))
 
     def afficher_liste_boite(self):
-        pass
+        for boite in self.liste_boite:
+            print(str(boite))
 
     def special_deux_un(self):
         pass
