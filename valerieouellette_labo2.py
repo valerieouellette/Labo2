@@ -111,6 +111,7 @@ class AppPizza:
         cout_special = int(input("Quel est le coût du spécial? "))
         if cout_special > (pizza1.cout * 2):
             print("Ce spécial n'en vaut pas la peine!")
+
         #On présente à l'utilisateur une liste de pizza au même prix que le spécial
         else:
             liste_temp_pizza = []
