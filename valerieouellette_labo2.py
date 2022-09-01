@@ -113,6 +113,7 @@ class AppPizza:
             print("Ce spécial n'en vaut pas la peine!")
 
         #On présente à l'utilisateur une liste de pizza au même prix que le spécial
+        #Ex: Affiche liste pizza même prix que spécial
         else:
             liste_temp_pizza = []
             for pizza in self.liste_pizza:
