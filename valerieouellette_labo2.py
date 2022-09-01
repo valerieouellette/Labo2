@@ -1,3 +1,9 @@
+#Classe Pizza avec 3 attributs: rayon, diametre et cout
+#PI 3.1416 attribut de classe
+#Classe Boite avec 2 attributs: longueur, largeur
+#Class AppPizza avec menu, méthode création pizza, création boîte, affichage liste pizza, affichage liste boîte
+#spécial deux pour un, pizza dans la boîte
+
 class Pizza:
 
     PI = 3.1416
@@ -94,6 +100,7 @@ class AppPizza:
 
 
     def special_deux_un(self):
+        #On affiche la liste de pizza et on demande à l'utilisateur d'en choisir une
         for i in range(len(self.liste_pizza)):
             print(f"{str(i+1)}) {str(self.liste_pizza[i])}")
         
@@ -104,6 +111,7 @@ class AppPizza:
         cout_special = int(input("Quel est le coût du spécial? "))
         if cout_special > (pizza1.cout * 2):
             print("Ce spécial n'en vaut pas la peine!")
+        #On présente à l'utilisateur une liste de pizza au même prix que le spécial
         else:
             liste_temp_pizza = []
             for pizza in self.liste_pizza:
@@ -117,6 +125,7 @@ class AppPizza:
                 for i in range(len(liste_temp_pizza)):
                     print(f"{str(i+1)}) {liste_temp_pizza[i]}")
         
+                #L'utilisateur choisit la deuxième pizza parmi la liste proposée
                 choix_pizza2 = int(input(f"Choisissez une pizza au même prix (1-{str(len(liste_temp_pizza))}): "))
                 pizza2 = liste_temp_pizza[choix_pizza2 - 1]
                 print(f"Votre choix: {str(pizza2)}")
@@ -124,6 +133,7 @@ class AppPizza:
                 aire_pizza1 = Pizza.PI * (pizza1.rayon ** 2)
                 aire_pizza2 = Pizza.PI * (pizza2.rayon ** 2)
 
+                #On compare l'aire totale de deux pizzas1 versus une pizza2 pour voir ce qui est le plus avantageux
                 if (aire_pizza1 * 2) > aire_pizza2:
                     print("Le spécial est avantageux!")
                 elif (aire_pizza1 * 2) < aire_pizza2:
@@ -133,6 +143,7 @@ class AppPizza:
 
 
     def pizza_dans_boite(self):
+        #On affiche la liste des pizzas et l'utilisateur en choisit une
         for i in range(len(self.liste_pizza)):
             print(f"{str(i+1)}) {str(self.liste_pizza[i])}")
         
@@ -140,6 +151,7 @@ class AppPizza:
         pizza = self.liste_pizza[choix_pizza - 1]
         print(f"Votre choix: {str(pizza)}")
 
+        #On affiche la liste de boites et l'utilisateur en choisit une
         for i in range(len(self.liste_boite)):
             print(f"{str(i+1)}) {str(self.liste_boite[i])}")
         
@@ -147,6 +159,7 @@ class AppPizza:
         boite = self.liste_boite[choix_boite - 1]
         print(f"Votre choix: {str(boite)}")
 
+        #On vérifie si la pizza choisie rentre dans la boîte choisie
         if (pizza.diametre * 2.54) <= boite.largeur and (pizza.diametre * 2.54) <= boite.longueur:
             self.liste_pizza.remove(pizza)
             self.liste_boite.remove(boite)
