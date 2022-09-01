@@ -7,6 +7,7 @@ class Pizza:
         self.diametre = diametre
         self.cout = cout
 
+
     def __str__(self):
         return f"PIZZA rayon: {self.rayon}, diamètre: {self.diametre}, coût: {self.cout}"
 
@@ -17,8 +18,10 @@ class Boite:
         self.longueur = longueur
         self.largeur = largeur
     
+
     def __str__(self):
         return f"BOÎTE longueur: {self.longueur}, largeur {self.largeur}"
+
 
 class AppPizza:
 
@@ -26,6 +29,7 @@ class AppPizza:
         self.liste_pizza = []
         self.liste_boite = []
         self.menu()
+
 
     def menu(self):
         menu = {}
@@ -37,12 +41,16 @@ class AppPizza:
         menu[6] = "Mettre une pizza dans une boîte"
         menu[7] = "Sortir du programme"
 
-        for numero, option in menu.items():
-            print(f"{numero}) {option} \n")
-        
         sortie = True
         while sortie:
+            print()
+
+            for numero, option in menu.items():
+                print(f"{numero}) {option} ")
+
+            print()
             choix = input("Votre choix: ")
+
             if choix == "1":
                 self.creation_pizza()
             elif choix == "2":
@@ -61,24 +69,29 @@ class AppPizza:
             else:
                 print("Choix invalide")
 
+
     def creation_pizza(self):
         rayon = int(input("Entrez le rayon de la pizza: "))
         diametre = rayon * 2
         cout = int(input("Entrez le cout de la pizza: "))
         self.liste_pizza.append(Pizza(rayon, diametre, cout))
 
+
     def creation_boite(self):
         longueur = int(input("Entrez la longueur de la boîte: "))
         largeur = int(input("Entrez la largeur de la boîte: "))
         self.liste_boite.append(Boite(longueur, largeur))
 
+
     def afficher_liste_pizza(self):
         for pizza in self.liste_pizza:
             print(str(pizza))
 
+
     def afficher_liste_boite(self):
         for boite in self.liste_boite:
             print(str(boite))
+
 
     def special_deux_un(self):
         for i in range(len(self.liste_pizza)):
@@ -86,8 +99,7 @@ class AppPizza:
         
         choix_pizza1 = int(input(f"Choisissez une pizza (1-{str(len(self.liste_pizza))}): "))
         pizza1 = self.liste_pizza[choix_pizza1 - 1]
-        # à enlever
-        print(str(pizza1))
+        print(f"Votre choix: {str(pizza1)}")
 
         cout_special = int(input("Quel est le coût du spécial? "))
         if cout_special > (pizza1.cout * 2):
@@ -97,29 +109,50 @@ class AppPizza:
             for pizza in self.liste_pizza:
                 if pizza.cout == cout_special:
                     liste_temp_pizza.append(pizza)
-
-            for i in range(len(liste_temp_pizza)):
-                print(f"{str(i+1)}) {liste_temp_pizza[i]}")
-        
-            choix_pizza2 = int(input(f"Choisissez une pizza au même prix (1-{str(len(liste_temp_pizza))}): "))
-            pizza2 = liste_temp_pizza[choix_pizza1 - 1]
-            # à enlever
-            print(str(pizza2))
-        
-            aire_pizza1 = Pizza.PI * (pizza1.rayon ** 2)
-            aire_pizza2 = Pizza.PI * (pizza2.rayon ** 2)
-
-            if (aire_pizza1 * 2) > aire_pizza2:
-                print("Le spécial est avantageux!")
-            elif (aire_pizza1 * 2) < aire_pizza2:
-                print("Le spécial n'est pas avantageux.")
+            
+            if len(liste_temp_pizza) == 0:
+                print("Aucune pizza ne correspond à ce prix.")
+            
             else:
-                print("Le spécial est aussi avantageux que prendre la deuxième pizza.")
+                for i in range(len(liste_temp_pizza)):
+                    print(f"{str(i+1)}) {liste_temp_pizza[i]}")
+        
+                choix_pizza2 = int(input(f"Choisissez une pizza au même prix (1-{str(len(liste_temp_pizza))}): "))
+                pizza2 = liste_temp_pizza[choix_pizza2 - 1]
+                print(f"Votre choix: {str(pizza2)}")
+        
+                aire_pizza1 = Pizza.PI * (pizza1.rayon ** 2)
+                aire_pizza2 = Pizza.PI * (pizza2.rayon ** 2)
+
+                if (aire_pizza1 * 2) > aire_pizza2:
+                    print("Le spécial est avantageux!")
+                elif (aire_pizza1 * 2) < aire_pizza2:
+                    print("Le spécial n'est pas avantageux.")
+                else:
+                    print("Le spécial est aussi avantageux que la deuxième pizza.")
 
 
     def pizza_dans_boite(self):
-        pass
+        for i in range(len(self.liste_pizza)):
+            print(f"{str(i+1)}) {str(self.liste_pizza[i])}")
+        
+        choix_pizza = int(input(f"Choisissez une pizza (1-{str(len(self.liste_pizza))}): "))
+        pizza = self.liste_pizza[choix_pizza - 1]
+        print(f"Votre choix: {str(pizza)}")
+
+        for i in range(len(self.liste_boite)):
+            print(f"{str(i+1)}) {str(self.liste_boite[i])}")
+        
+        choix_boite = int(input(f"Choisissez une boîte (1-{str(len(self.liste_boite))}): "))
+        boite = self.liste_boite[choix_boite - 1]
+        print(f"Votre choix: {str(boite)}")
+
+        if (pizza.diametre * 2.54) <= boite.largeur and (pizza.diametre * 2.54) <= boite.longueur:
+            self.liste_pizza.remove(pizza)
+            self.liste_boite.remove(boite)
+            print("La pizza rentre dans la boîte.")
+        else:
+            print("La pizza ne rentre pas dans la boîte.")
 
 
 app_pizza = AppPizza()
-
