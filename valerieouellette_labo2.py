@@ -84,33 +84,37 @@ class AppPizza:
         for i in range(len(self.liste_pizza)):
             print(f"{str(i+1)}) {str(self.liste_pizza[i])}")
         
-        choix_pizza1 = int(input(f"Choisissez une pizza: (1-{str(len(self.liste_pizza)-1)}"))
+        choix_pizza1 = int(input(f"Choisissez une pizza (1-{str(len(self.liste_pizza))}): "))
         pizza1 = self.liste_pizza[choix_pizza1 - 1]
+        # à enlever
+        print(str(pizza1))
 
         cout_special = int(input("Quel est le coût du spécial? "))
-        if cout_special > pizza1.cout:
+        if cout_special > (pizza1.cout * 2):
             print("Ce spécial n'en vaut pas la peine!")
         else:
+            liste_temp_pizza = []
             for pizza in self.liste_pizza:
-                liste_temp_pizza = []
                 if pizza.cout == cout_special:
                     liste_temp_pizza.append(pizza)
 
-        for i in range(len(liste_temp_pizza)):
-            print(f"{str(i+1)}) {liste_temp_pizza[i]}")
+            for i in range(len(liste_temp_pizza)):
+                print(f"{str(i+1)}) {liste_temp_pizza[i]}")
         
-        choix_pizza2 = int(input(f"Choisissez une pizza au même prix: (1-{str(len(liste_temp_pizza)-1)}"))
-        pizza2 = liste_temp_pizza[choix_pizza1 - 1]
+            choix_pizza2 = int(input(f"Choisissez une pizza au même prix (1-{str(len(liste_temp_pizza))}): "))
+            pizza2 = liste_temp_pizza[choix_pizza1 - 1]
+            # à enlever
+            print(str(pizza2))
         
-        aire_pizza1 = Pizza.PI * (pizza1.rayon ** 2)
-        aire_pizza2 = Pizza.PI * (pizza2.rayon ** 2)
+            aire_pizza1 = Pizza.PI * (pizza1.rayon ** 2)
+            aire_pizza2 = Pizza.PI * (pizza2.rayon ** 2)
 
-        if (aire_pizza1 * 2) > aire_pizza2:
-            print("Le spécial est avantageux!")
-        elif (aire_pizza1 * 2) < aire_pizza2:
-            print("Le spécial n'est pas avantageux.")
-        else:
-            print("Le spécial est aussi avantageux que prendre la deuxième pizza.")
+            if (aire_pizza1 * 2) > aire_pizza2:
+                print("Le spécial est avantageux!")
+            elif (aire_pizza1 * 2) < aire_pizza2:
+                print("Le spécial n'est pas avantageux.")
+            else:
+                print("Le spécial est aussi avantageux que prendre la deuxième pizza.")
 
 
     def pizza_dans_boite(self):
@@ -118,3 +122,4 @@ class AppPizza:
 
 
 app_pizza = AppPizza()
+
